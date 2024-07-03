@@ -2,8 +2,7 @@
 # Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
-trigger:
-- main
+trigger: none
 
 resources:
 - repo: self
@@ -14,7 +13,6 @@ variables:
   dockerRegistryServiceConnection: '8f14be0d-e913-4bb0-bdf3-f193bbe8ad30'
   imageRepository: 'webapp'
   containerRegistry: 'acsdemoregistry.azurecr.io'
-  dockerfilePath: '$(Pipeline.Workspace)/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'acsdemoregistry20911695-auth'
 
@@ -36,7 +34,7 @@ stages:
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
+        dockerfile: '**/Dockerfile'
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
