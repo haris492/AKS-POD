@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: '8f14be0d-e913-4bb0-bdf3-f193bbe8ad30'
   imageRepository: 'webapp'
   containerRegistry: 'acsdemoregistry.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: '$(Pipeline.Workspace)/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'acsdemoregistry20911695-auth'
 
